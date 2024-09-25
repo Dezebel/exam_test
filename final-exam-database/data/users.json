@@ -1,0 +1,12 @@
+[
+  {
+    "_id": { "$oid": "6331440055bb76ad4167f399" },
+    "username": "foo",
+    "password": "$2a$10$U2Rd644n2NSV3Y/uWDmC.OoBfJdgGiXK4rph0oHb.OYuyNAuzx.qi"
+  },
+  {
+    "_id": { "$oid": "633144d343828b98bf9f723d" },
+    "username": "john",
+    "password": "$2a$10$Q7VLHOSkE2mFju7cR4uLceyaKDJGLISjJiMQr61RzTJ2kAj7PchK6"
+  }
+]

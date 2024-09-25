@@ -1,0 +1,6 @@
+export { default as Home } from './Home'
+export { default as Login } from './Login'
+export { default as PostDetails } from './PostDetails'
+export { default as PostEditor } from './PostEditor'
+export { default as Profile } from './Profile'
+export { default as Register } from './Register'

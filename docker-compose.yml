@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mongo-db:
+    image: mongo
+    ports:
+      - 27017:27017
+  mongo-seed:
+    build: ./final-exam-database
+    depends_on:
+      - mongo-db
+  server-app:
+    build: ./final-exam-server
+    depends_on:
+      - mongo-seed
+    environment:
+      - PORT=8080
+      - dbURI=mongodb://mongo-db:27017
+    volumes:
+      - ./final-exam-server/src:/final-exam-server/src
+    ports:
+      - 8080:8080
+  client-app:
+    build: ./final-exam-client
+    depends_on:
+      - server-app
+    environment:
+      - REACT_APP_PROXY_HOST=http://server-app:8080
+    volumes:
+      - ./final-exam-client/src:/final-exam-client/src
+    ports:
+      - 3000:3000
