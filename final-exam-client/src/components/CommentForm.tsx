@@ -9,13 +9,14 @@ type CommentFormProps = {
 }
 
 export default function CommentForm({
-  postId,
+    postId,
   onSaveSucceeded,
 }: CommentFormProps) {
   const [commentContent, setCommentContent] = useState('')
   const [error, setError] = useState<string | null>(null)  // To handle error
 
   const handleSaveComment = async () => {
+    
     try {
       setError(null)  // Reset error state before making the request
 
@@ -40,7 +41,11 @@ export default function CommentForm({
   return (
     <form
       onSubmit={(e) => {
+        alert('onsubmit');
+
         e.preventDefault()
+        alert ('sving comment')// saving comment test
+    
         handleSaveComment()
       }}
     >
