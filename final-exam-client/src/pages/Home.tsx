@@ -5,6 +5,7 @@ import { get } from '../http'
 import type { Post } from '../types'
 
 export default function Home() {
+
   const navigate = useNavigate()
   const [posts, setPosts] = useState<Omit<Post, 'comments'>[]>([])
   const [keyword, setKeyword] = useState('')
@@ -23,6 +24,7 @@ export default function Home() {
   )
 
   return (
+
     <>
       <h1>Posts</h1>
       <input
@@ -38,7 +40,17 @@ export default function Home() {
               <h2>{title}</h2>
               <span>{content}</span>
               <em> - by {user.username}</em>
-              <button onClick={() => navigate(`post/${_id}`)}>View</button>
+              
+
+              <button onClick={() => {
+                navigate(`post/${_id}`);
+              }}>
+                View
+              </button>
+
+
+
+
             </li>
           ))
         ) : (

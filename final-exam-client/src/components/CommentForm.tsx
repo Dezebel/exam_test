@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { post } from '../http'
-import type { Comment } from '../types'
+import type { Comment } from '../types/Comment'
 
 type CommentFormProps = {
   postId: string
@@ -16,15 +16,20 @@ export default function CommentForm({
   const [error, setError] = useState<string | null>(null)  // To handle error
 
   const handleSaveComment = async () => {
-    
+    alert('handlesavecomment');
+
     try {
       setError(null)  // Reset error state before making the request
 
       // Make an API request to save the comment
-      const response = await post<Comment>('/api/comments', {
-        postId,
-        content: commentContent,
-      })
+      const response = await post<{ postId: string; content: string }, Comment>(
+        '/api/comments', 
+        {
+          postId,
+          content: commentContent,
+        }
+      );
+      
 
       // After successful save, call onSaveSucceeded with comment ID and content
       onSaveSucceeded(response._id, commentContent)
@@ -32,6 +37,8 @@ export default function CommentForm({
       // Clear the input after saving
       setCommentContent('')
     } catch (err) {
+      alert('error');
+
       // Handle any errors that occur during the request
       setError('Failed to save the comment. Please try again.')
     }
@@ -41,11 +48,9 @@ export default function CommentForm({
   return (
     <form
       onSubmit={(e) => {
-        alert('onsubmit');
-
+        
         e.preventDefault()
-        alert ('sving comment')// saving comment test
-    
+        
         handleSaveComment()
       }}
     >
