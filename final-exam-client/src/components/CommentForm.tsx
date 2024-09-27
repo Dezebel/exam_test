@@ -25,14 +25,14 @@ export default function CommentForm({
         content: commentContent,
       });
   
-      // Make an API request to save the comment
-      const response = await post<{ postId: string; content: string }, Comment>(
+      const response = await post<{ post: string; content: string }, Comment>(
         '/api/comments',
         {
-          postId,
+          post: postId,  // Change postId to post
           content: commentContent,
         }
       );
+      
   
       // After successful save, call onSaveSucceeded with comment ID and content
       onSaveSucceeded(response._id, commentContent);
