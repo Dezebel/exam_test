@@ -16,33 +16,40 @@ export default function CommentForm({
   const [error, setError] = useState<string | null>(null)  // To handle error
 
   const handleSaveComment = async () => {
-    alert('handlesavecomment');
-
     try {
-      setError(null)  // Reset error state before making the request
-
+      setError(null);  // Reset error state before making the request
+  
+      // Log the payload being sent
+      console.log({
+        postId,
+        content: commentContent,
+      });
+  
       // Make an API request to save the comment
       const response = await post<{ postId: string; content: string }, Comment>(
-        '/api/comments', 
+        '/api/comments',
         {
           postId,
           content: commentContent,
         }
       );
-      
-
+  
       // After successful save, call onSaveSucceeded with comment ID and content
-      onSaveSucceeded(response._id, commentContent)
-
+      onSaveSucceeded(response._id, commentContent);
+  
       // Clear the input after saving
-      setCommentContent('')
+      setCommentContent('');
     } catch (err) {
-      alert('error');
-
+      // Log the error for more details
+      alert(postId);
+      alert(commentContent);
+      console.error('Error saving comment:', err);
+  
       // Handle any errors that occur during the request
-      setError('Failed to save the comment. Please try again.')
+      setError('Failed to save the comment. Please try again.');
     }
-  }
+  };
+  
 
   
   return (
